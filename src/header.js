@@ -1,12 +1,17 @@
 import React from 'react';
+import spotify from './spotify-logo-transparent-free-png.webp';
 
-const Header = () => {
+const Header = ({nameref}) => {
   return (
     <header>
-      <h1>Spotify</h1>
-        <img src='assets/spotify-logo-transparent-free-png.webp' alt='logo'></img>
+      <h1 ref={nameref}>Spotify</h1>
+        <img class="spotifylogo" src={spotify} alt='logo' ></img>
     </header>
   );
 }
 
 export default Header;
+
+
+
+

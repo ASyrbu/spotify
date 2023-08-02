@@ -1,29 +1,26 @@
 import React from 'react';
+import playlist from './playlist';
 
-const songs = [
-  { id: 1, title: 'Back In Black' ,compositor: 'ACDC',year: 1980},
-  { id: 2, title: 'PokerFace' ,compositor: 'LadyGaga',year: 2008},
-  { id: 3, title: 'Ничего на свете лучше нету' ,compositor: 'Бременские МузыкантыC',year: 1970},
-  { id: 4, title: 'False Alarm' ,compositor: 'The Weeknd',year: 2016},
-  { id: 5, title: 'Humble' ,compositor: 'Kendrick Lamar',year: 2018}
-
-];
-
-const Songs = ({ onSelectSong }) => {
+const Songs = ({ onSelectSong, nameref }) => {
   const handleClick = (song) => {
     onSelectSong(song);
+    if (nameref && nameref.current) {
+      nameref.current.textContent = song.title + '    ' + song.compositor + '   ' + song.year
+    }
   };
 
   return (
     <div class="songlist">
-      <h2 className='text-[22px]'>Список песен:</h2>
-      <ul>
-        {songs.map((song) => (
-          <li className="text-[22px]" key={song.id} onClick={() => handleClick(song)}>
-            {song.title} 
-          </li>
+      <h2>Список песен:</h2>
+      <table>
+        {playlist.map((song) => (
+          <tr class="stroka" key={song.id} onClick={() => handleClick(song)}>
+            <td class="title"> {song.title} </td>
+            <td class="year"> {song.year} </td>
+            <td class="compositor"> {song.compositor} </td>
+          </tr>
         ))}
-      </ul>
+      </table>
     </div>
   );
 };
